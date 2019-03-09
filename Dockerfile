@@ -1,4 +1,4 @@
-FROM partlab/ubuntu-golang AS build-env
+FROM golang:1.12.0-stretch AS build-env
 ENV GOOS=linux
 
 RUN apt-get update

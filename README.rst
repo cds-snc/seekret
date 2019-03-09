@@ -2,7 +2,7 @@
 What is this?
 =============
 
-This is a docker wrapper around https://github.com/apuigsech/seekret. The original library no longer builds with the git functionality because it requires an older version of `go2git`. We did not need it, so we removed it and retained the directory scan functionality. We then wrapped it into a Docker image to use as part of CI. 
+This is a docker wrapper around https://github.com/apuigsech/seekret. The original library no longer builds with the git functionality because it requires an older version of https://github.com/libgit2/git2go. We did not need it, so we removed it and retained the directory scan functionality. We then wrapped it into a Docker image to use as part of CI. 
 
 ************
 seekret

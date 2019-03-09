@@ -7,11 +7,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/apuigsech/seekret"
-	"github.com/apuigsech/seekret-source-dir"
-	"github.com/apuigsech/seekret-source-git"
-	"github.com/urfave/cli"
 	"os"
+
+	"github.com/apuigsech/seekret"
+	"github.com/urfave/cli"
 )
 
 const (
@@ -69,33 +68,6 @@ func main() {
 
 	app.Commands = []cli.Command{
 		{
-			Name:     "git",
-			Usage:    "seek for seecrets on a git repository",
-			Category: "seek",
-			Action:   seekretGit,
-
-			Flags: []cli.Flag{
-				cli.BoolFlag{
-					Name:  "commit-files, cf, f",
-					Usage: "inspect commited files",
-				},
-
-				cli.BoolFlag{
-					Name:  "commit-messages, cm, m",
-					Usage: "inspect commit messages",
-				},
-				cli.BoolFlag{
-					Name:  "staged-files, sf, s",
-					Usage: "inspect staged files",
-				},
-				cli.IntFlag{
-					Name:  "commit-count, cc, c",
-					Usage: "",
-					Value: DefaultCommitCount,
-				},
-			},
-		},
-		{
 			Name:     "dir",
 			Usage:    "seek for seecrets on a directory",
 			Category: "seek",
@@ -151,49 +123,6 @@ func seekretDir(c *cli.Context) error {
 	}
 
 	err := s.LoadObjects(sourcedir.SourceTypeDir, source, options)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func seekretGit(c *cli.Context) error {
-	source := c.Args().Get(0)
-	if source == "" {
-		cli.ShowSubcommandHelp(c)
-		return nil
-	}
-
-	// SourceGitLoadOptions composition:
-	//   * commit-files: Include commited file content as object.
-	//   * commit-messages: Include commit contect as object.
-	//   * staged-files: Include stateg dile contect as object.
-	//   * commit-count: Ammount of commits to analise.
-	options := map[string]interface{}{
-		"commit-files": false,
-		"commit-messages": false,
-		"staged-files": false,
-		"commit-count": DefaultCommitCount,
-	}
-
-	if c.IsSet("commit-files") {
-		options["commit-files"] = true
-	}
-
-	if c.IsSet("commit-messages") {
-		options["commit-messages"] = true
-	}
-
-	if c.IsSet("staged-files") {
-		options["staged-files"] = true
-	}
-
-	if c.IsSet("commit-count") {
-		options["commit-count"] = c.Int("commit-count")
-	}
-
-	err := s.LoadObjects(sourcegit.SourceTypeGit, source, options)
 	if err != nil {
 		return err
 	}

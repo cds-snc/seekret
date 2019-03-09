@@ -1,8 +1,12 @@
-|Build Status| |Documentation Status|
+=============
+What is this?
+=============
 
-=======
+This is a docker wrapper around https://github.com/apuigsech/seekret. The original library no longer builds with the git functionality because it requires an older version of `go2git`. We did not need it, so we removed it and retained the directory scan functionality. We then wrapped it into a Docker image to use as part of CI. 
+
+************
 seekret
-=======
+************
 
 Go library and command line to seek for secrets on various sources.
 
@@ -31,10 +35,7 @@ Installing seekret
 
 The requirements for a success installation are:
 
- * pkg-config
  * golang >= 1.6
- * libgit2 >= 2.23
-
 
 Usage
 =====
@@ -236,14 +237,3 @@ Contains the line number into the object.
 
 ``content``
 Contains a regexp that should match the content.
-
-
-
-.. |Build Status| image:: https://travis-ci.org/apuigsech/seekret.svg
-   :target: https://travis-ci.org/apuigsech/seekret
-   :width: 88px
-   :height: 20px
-.. |Documentation Status| image:: https://godoc.org/github.com/apuigsech/seekret?status.svg
-   :target: https://godoc.org/github.com/apuigsech/seekret
-   :width: 88px
-   :height: 20px

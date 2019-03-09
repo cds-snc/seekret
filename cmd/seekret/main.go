@@ -8,8 +8,8 @@ package main
 import (
 	"fmt"
 	"os"
-
 	"github.com/apuigsech/seekret"
+	"github.com/apuigsech/seekret-source-dir"
 	"github.com/urfave/cli"
 )
 

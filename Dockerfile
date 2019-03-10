@@ -11,9 +11,9 @@ RUN go get github.com/cds-snc/seekret
 RUN go build -a -installsuffix cgo -o seekret github.com/cds-snc/seekret
 RUN chmod +x /app/seekret
 
-FROM frolvlad/alpine-glibc:alpine-3.9_glibc-2.29 
+FROM debian:stretch-slim
 ENV SEEKRET_RULES_PATH /rules
 RUN mkdir /rules
 COPY ./rules /rules
-COPY --from=build-env /app/seekret /
-CMD ["/seekret"]
+COPY --from=build-env /app/seekret /bin/
+CMD ["/bin/seekret"]
